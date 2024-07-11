@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface IAnimationService {
     List<Animation> getAnimations();
-    Optional<Animation> getAnimationById(Long id);
+    Animation getAnimationById(Long id);
 }

@@ -1,5 +1,6 @@
 package com.example.myDCAnimationList.controller;
 
+import com.example.myDCAnimationList.model.LoginDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +27,7 @@ public class AuthenticationController {
     }
     
     @PostMapping("/login")
-    public Map<String, String> loginUser(@RequestBody RegistrationDTO body){
+    public Map<String, String> loginUser(@RequestBody LoginDTO body){
         return authenticationService.loginUser(body.getUsername(), body.getPassword());
     }
 }   

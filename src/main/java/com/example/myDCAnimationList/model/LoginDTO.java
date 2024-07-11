@@ -1,29 +1,29 @@
 package com.example.myDCAnimationList.model;
 
 public class LoginDTO {
-     private User user;
-     private String jwt;
+     private String username;
+     private String password;
 
      public LoginDTO() { }
 
-    public LoginDTO(User user, String jwt) {
-        this.user = user;
-        this.jwt = jwt;
+    public LoginDTO(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
-    public User getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getJwt() {
-        return jwt;
+    public String getPassword() {
+        return password;
     }
 
-    public void setJwt(String jwt) {
-        this.jwt = jwt;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

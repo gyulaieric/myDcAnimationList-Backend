@@ -25,7 +25,7 @@ public class AnimationController {
     }
 
     @GetMapping("{animationId}")
-    public Optional<Animation> getAnimationById(@PathVariable Long animationId) {
+    public Animation getAnimationById(@PathVariable Long animationId) {
         return animationService.getAnimationById(animationId);
     }
 }

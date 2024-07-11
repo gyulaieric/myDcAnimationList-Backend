@@ -5,7 +5,6 @@ import com.example.myDCAnimationList.repository.AnimationRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AnimationService implements IAnimationService{
@@ -22,7 +21,9 @@ public class AnimationService implements IAnimationService{
     }
 
     @Override
-    public Optional<Animation> getAnimationById(Long id) {
-        return animationRepository.findById(id);
+    public Animation getAnimationById(Long id) {
+        return animationRepository.findById(id).orElseThrow(
+                () -> new IllegalStateException(String.format("Animation with id %s doesn't exist", id))
+        );
     }
 }
