@@ -40,7 +40,7 @@ public class AuthenticationService {
     public Object registerUser(String username, String email, String password){
 
         if (userRepository.existsByUsername(username)) {
-            return Collections.singletonMap("error", "User already exists");
+            throw new IllegalStateException("User already exists");
         }
 
         String encodedPassword = passwordEncoder.encode(password);
@@ -64,7 +64,7 @@ public class AuthenticationService {
 
             return Map.of("id", userRepository.findByUsername(username).get().getId().toString(), "jwt", tokenService.generateJwt(auth));
         } catch(AuthenticationException e){
-            return Collections.singletonMap("error", e.getMessage());
+            throw new IllegalStateException("Bad credentials");
         }
     }
 
