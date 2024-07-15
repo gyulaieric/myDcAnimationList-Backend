@@ -31,7 +31,6 @@ public class UserAnimationJunctionService implements IUserAnimationJunctionServi
 
     @Override
     public Map<String, String> saveJunction(Authentication authentication, Long animationId) {
-
         UserAnimationJunction userAnimationJunction = new UserAnimationJunction(userRepository.findByUsername(authentication.getName()).get().getId(), animationId);
 
         if (isAnimationInList(userAnimationJunction) == null) {
@@ -39,10 +38,10 @@ public class UserAnimationJunctionService implements IUserAnimationJunctionServi
                 junctionRepository.save(userAnimationJunction);
                 return Collections.singletonMap("success", "Animation successfully added to list");
             } else {
-                return Collections.singletonMap("error", "Animation does not exist");
+                throw new IllegalStateException("Animation does not exist");
             }
         } else {
-            return Collections.singletonMap("error", "Animation is already in your list");
+            throw new IllegalStateException("Animation is already in your list");
         }
     }
 
@@ -53,26 +52,25 @@ public class UserAnimationJunctionService implements IUserAnimationJunctionServi
         );
 
         if (listItem.getUserRating() > 10 || listItem.getUserRating() < 0) {
-            return Collections.singletonMap("error", "Invalid rating");
+           throw new IllegalStateException("Invalid rating");
         }
         if (userRepository.findByUsername(authentication.getName()).get().getId().equals(junctionRepository.findById(id).get().getUserId())) {
             userAnimationJunction.setUserRating(listItem.getUserRating());
             junctionRepository.save(userAnimationJunction);
             return Collections.singletonMap("response", "Successfully updated rating.");
         } else {
-            return Collections.singletonMap("error", "You are trying to rate an animation in someone else's list.");
+            throw new IllegalStateException("You cannot rate this animation.");
         }
     }
 
     @Override
     public void deleteJunction(Authentication authentication, Long animationId) {
-
         UserAnimationJunction userAnimationJunction = isAnimationInList(new UserAnimationJunction(userRepository.findByUsername(authentication.getName()).get().getId(), animationId));
 
         if (userAnimationJunction != null) {
             junctionRepository.deleteById(userAnimationJunction.getId());
         } else {
-            System.out.println("Animation is not in your list");
+            throw new IllegalStateException("Animation is not in your list");
         }
     }
 
