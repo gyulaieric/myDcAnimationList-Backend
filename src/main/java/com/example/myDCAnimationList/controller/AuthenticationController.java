@@ -1,6 +1,6 @@
 package com.example.myDCAnimationList.controller;
 
-import com.example.myDCAnimationList.model.LoginDTO;
+import com.example.myDCAnimationList.dto.LoginDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.myDCAnimationList.model.RegistrationDTO;
+import com.example.myDCAnimationList.dto.RegistrationDTO;
 import com.example.myDCAnimationList.service.AuthenticationService;
 
 import java.util.Map;

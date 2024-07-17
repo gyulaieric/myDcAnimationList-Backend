@@ -1,4 +1,4 @@
-package com.example.myDCAnimationList.model;
+package com.example.myDCAnimationList.dto;
 
 public class RegistrationDTO {
     private String username;
