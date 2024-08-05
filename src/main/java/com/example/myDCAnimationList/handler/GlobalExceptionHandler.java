@@ -11,7 +11,7 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler(IllegalAccessException.class)
+    @ExceptionHandler(IllegalStateException.class)
     public ResponseEntity<Object> handleException(IllegalStateException e) {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDate.now());

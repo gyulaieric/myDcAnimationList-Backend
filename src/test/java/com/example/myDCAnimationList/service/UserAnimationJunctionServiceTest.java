@@ -6,6 +6,7 @@ import com.example.myDCAnimationList.model.UserAnimationJunction;
 import com.example.myDCAnimationList.repository.AnimationRepository;
 import com.example.myDCAnimationList.repository.UserAnimationJunctionRepository;
 import com.example.myDCAnimationList.repository.UserRepository;
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,9 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -213,6 +212,7 @@ public class UserAnimationJunctionServiceTest {
         junction.setUserId(user.getId());
         junction.setAnimationId(animationId);
 
+        Mockito.when(junctionRepository.findAllByUserId(user.getId())).thenReturn(Arrays.asList(new UserAnimationJunction(user.getId(), 2L)));
         Mockito.when(authentication.getName()).thenReturn("testuser");
         Mockito.when(userRepository.findByUsername(user.getUsername())).thenReturn(Optional.of(user));
 
