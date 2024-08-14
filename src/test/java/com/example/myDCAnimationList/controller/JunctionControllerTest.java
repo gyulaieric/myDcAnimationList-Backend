@@ -51,7 +51,7 @@ public class JunctionControllerTest {
     public void saveJunction() throws Exception {
         Long animationId = 1L;
 
-        mockMvc.perform(post("/list/add/" + animationId)
+        mockMvc.perform(post("/list/" + animationId)
                         .with(jwt()))
                 .andExpect(status().isOk());
 
@@ -92,7 +92,7 @@ public class JunctionControllerTest {
     public void deleteJunction() throws Exception {
         Long animationId = 1L;
 
-        mockMvc.perform(delete("/list/delete/" + animationId)
+        mockMvc.perform(delete("/list/" + animationId)
                 .with(jwt()))
                 .andExpect(status().isOk());
 

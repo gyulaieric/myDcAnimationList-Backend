@@ -19,7 +19,7 @@ public class JunctionController {
         this.junctionService = junctionService;
     }
 
-    @PostMapping("/add/{animationId}")
+    @PostMapping("/{animationId}")
     public Map<String, String> saveJunction(Authentication authentication, @PathVariable Long animationId) {
         return junctionService.saveJunction(authentication, animationId);
     }
@@ -34,7 +34,7 @@ public class JunctionController {
         return junctionService.updateUserRating(authentication, listItemId, listItem);
     }
 
-    @DeleteMapping("/delete/{animationId}")
+    @DeleteMapping("/{animationId}")
     public void deleteJunction(Authentication authentication, @PathVariable Long animationId) {
         junctionService.deleteJunction(authentication, animationId);
     }
